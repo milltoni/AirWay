@@ -1,9 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 
 import { DisplayMode, EditorMode } from "../../store/slices/modeSlice";
 import { isEditorMode } from "../../constants";
-import { ShowPopup } from "../../store/slices/popupSlice";
+import { ShowPopup } from "../../store/slices/popupSlice"
+import { ShowOrHideAddInfo } from "../../store/slices/add_infoSlice";
 
 import logo from "./logo.svg";
 import "./header.css";
@@ -27,6 +28,7 @@ const Links = props => {
   
   const Header = () => {
     const mode = useSelector((state) => state.mode.mode)
+    const add_info = useSelector((state) => state.add_info.isShown)
     const dispatch = useDispatch();
   
   
@@ -45,7 +47,7 @@ const Links = props => {
     const editorLinks = {
       links: [
         <a href="https://github.com/milltoni/airway.git">GitHub</a>,
-        <a href="https://github.com/milltoni/airway.git">How to add</a>,
+        <a href="#" onClick={() => dispatch(ShowOrHideAddInfo(add_info ? false : true))}>How to Use</a>,
         // <a href="#" onClick={reset}>Reset</a>,
         <a href="#" onClick={() => dispatch(ShowPopup)}>
           Create Pull Request
