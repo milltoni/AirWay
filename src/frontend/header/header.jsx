@@ -27,9 +27,10 @@ const Links = props => {
 };
   
   const Header = () => {
-    const mode = useSelector((state) => state.mode.mode);
-    const add_info = useSelector((state) => state.add_info.isShown);
-    const dispatch = useDispatch();
+    const mode = useSelector((state) => state.mode.mode)
+    const add_info = useSelector((state) => state.add_info.isShown)
+    //const data = useSelector((state) => state.data.yamlString);
+    const dispatch = useDispatch()
 
     const resetAndFetch = () => {
       dispatch(ResetToDefault());

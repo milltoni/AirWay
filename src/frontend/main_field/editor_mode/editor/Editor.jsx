@@ -17,8 +17,8 @@ import "./Editor.css";
 
 const Editor = () => {
     const yamlString = useSelector((state) => state.data.yamlString);
-    /*const errors = useSelector((state) => state.data.errors);
-    const dispatch = useDispatch();*/
+    const errors = useSelector((state) => state.data.errors);
+    const dispatch = useDispatch();
 
     //const [editor] =useSelector(null);
 
