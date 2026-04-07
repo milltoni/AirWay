@@ -6,6 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { onCtrlMouseDown } from "../../build/editor-plugins/commands/ctrl-click";
 import { onCtrl } from "../../build/editor-plugins/commands/ctrl"; */
 
+import { Validate, ExtractInstanceMap, setValue } from "../../../../store/slices/dataSlice";
+
 import "brace/mode/yaml";
 import "brace/theme/tomorrow_night_eighties";
 import "brace/ext/language_tools";
@@ -18,26 +20,32 @@ import "./Editor.css";
 const Editor = () => {
     const yamlString = useSelector((state) => state.data.yamlString);
     const errors = useSelector((state) => state.data.errors);
+    const im = useSelector((state) => state.data.instanceMatrix);
+    const ima = useSelector((state) => state.data.instanceMap);
     const dispatch = useDispatch();
 
-    //const [editor] =useSelector(null);
+    const [editor] = React.useState(null);
 
-    /*reduild = () => {
-        dispatch();
-    }*/
+    const rebuild = () => {
+        dispatch(Validate());
+        dispatch(ExtractInstanceMap());
+    };
 
-    /*onLoad = (editor) => {
-        this.setState({ editor });
-    
-        //Editor is not serializable
-        //That's why it's not in redux state
+    const onChange = (value) => {
+        dispatch(setValue(value));
+    };
+
+    const onLoad = (editor) => {
         window.editor = editor;
     
         let session = editor.getSession();
         const value = editor.getValue();
     
-        this.props.setValue(value);
-        this.rebuild();
+        onChange(value);
+        rebuild();
+        console.log(ima);
+        console.log(im);
+        console.log(errors);
     
         //Disable automatic error-marker correction by ace
         session.off("change", editor.renderer.$gutterLayer.$updateAnnotations);
@@ -49,14 +57,14 @@ const Editor = () => {
           }
         });
         //Handle ctrl+click
-        editor.on("mousedown", onCtrlMouseDown);
+       /* editor.on("mousedown", onCtrlMouseDown);
         //Highlight references on ctrl
         editor.on("mousemove", onCtrl);
         editor.$blockScrolling = Infinity;
         editorPluginsHook(editor, null, null || ["autosuggestApis"]);
     
-        this.updateErrorAnnotations(this.props, editor);
-    } */
+        this.updateErrorAnnotations(this.props, editor);*/
+    };
 
     return (
         <AceEditor
@@ -65,8 +73,8 @@ const Editor = () => {
             value={yamlString}
             mode="yaml"
             theme="tomorrow_night_eighties"
-            //onLoad={}
-            //onChange={}
+            onLoad={onLoad.bind(editor)}
+            onChange={onChange.bind(yamlString)}
             tabSize={2}
             fontSize={14}
             useSoftTabs="true"

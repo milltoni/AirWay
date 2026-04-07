@@ -90,7 +90,7 @@ export function getAllReferences(docModel) {
 }
 
 export function isBaseReference(base) {
-  const references = "/#/definitions/references/";
+  const references = "#/$defs/references/";
 
   return base && base.slice(0, references.length) === references;
 }

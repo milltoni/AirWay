@@ -1,10 +1,11 @@
 export default {
-    $schema: "http://jsonObj-schema.org/draft-04/schema#",
+    $schema: "https://json-schema.org/draft/2020-12/schema",
+    id: "https://example.com/schema.json",
     type: "object",
     patternProperties: {
-      "^[a-zA-Z]": { $ref: "/#/definitions/language" }
+      "^[a-zA-Z]": { $ref: "#/$defs/language" }
     },
-    definitions: {
+    $defs: {
       language: {
         type: "object",
         properties: {
@@ -12,12 +13,12 @@ export default {
           creator: { type: "string" },
           description: { type: "string" },
           people: { type: "array", items: { type: "string" } },
-          features: { $ref: "/#/definitions/features" },
+          features: { $ref: "#/$defs/features" },
           influenced_by: {
-            $ref: "/#/definitions/references/anyReference"
+            $ref: "#/$defs/references/anyReference"
           },
           influenced: {
-            $ref: "/#/definitions/references/anyReference"
+            $ref: "#/$defs/references/anyReference"
           },
         },
         required: ["name"]
@@ -27,7 +28,7 @@ export default {
         description: "Wrapper for feature items.",
         patternProperties: {
           "^[a-zA-Z]+": {
-            $ref: "/#/definitions/feature"
+            $ref: "#/$defs/feature"
           }
         },
         additionalProperties: false
@@ -39,13 +40,13 @@ export default {
           description: { type: "string" },
           invented: { type: "boolean" },
           inspired_by: {
-            $ref: "/#/definitions/references/anyReference"
+            $ref: "#/$defs/references/anyReference"
           },
           predated_by: {
-            $ref: "/#/definitions/references/anyReference"
+            $ref: "#/$defs/references/anyReference"
           },
           justified_by: {
-            $ref: "/#/definitions/references/anyReference"
+            $ref: "#/$defs/references/anyReference"
           }
         },
         required: ["description"]
@@ -53,32 +54,32 @@ export default {
       references: {
         anyReference: {
           anyOf: [
-            { $ref: "/#/definitions/references/singleAnyReference" },
-            { $ref: "/#/definitions/references/arrayAnyReference" }
+            { $ref: "#/$defs/references/singleAnyReference" },
+            { $ref: "#/$defs/references/arrayAnyReference" }
           ],
-          validDestinations: ["/#/definitions/feature", "/#/definitions/language"]
+          validDestinations: ["#/$defs/feature", "#/$defs/language"]
         },
         arrayAnyReference: {
           type: "array",
-          items: { $ref: "/#/definitions/references/singleAnyReference" },
-          validDestinations: ["/#/definitions/feature", "/#/definitions/language"]
+          items: { $ref: "#/$defs/references/singleAnyReference" },
+          validDestinations: ["#/$defs/feature", "#/$defs/language"]
         },
         singleAnyReference: {
           anyOf: [
-            { $ref: "/#/definitions/references/languageReference" },
-            { $ref: "/#/definitions/references/featureReference" }
+            { $ref: "#/$defs/references/languageReference" },
+            { $ref: "#/$defs/references/featureReference" }
           ],
-          validDestinations: ["/#/definitions/feature", "/#/definitions/language"]
+          validDestinations: ["#/$defs/feature", "#/$defs/language"]
         },
         languageReference: {
           type: "string",
           description: "Reference of programming language",
-          validDestinations: ["/#/definitions/language"]
+          validDestinations: ["#/$defs/language"]
         },
         featureReference: {
           type: "string",
           description: "Reference of feature: language.features.f1",
-          validDestinations: ["/#/definitions/feature"]
+          validDestinations: ["#/$defs/feature"]
         }
       }
     }

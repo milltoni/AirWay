@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { getYaml } from "../../backend/getYAML";
 import extractInstanceMap from "../../backend/extractInstanceMap"
-import validateYaml from "../../backend/validateYaml"
+import validateYamlString from "../../backend/validateYaml"
 
 export const dataSlice = createSlice({
     name: 'data',
@@ -10,7 +10,7 @@ export const dataSlice = createSlice({
         yamlString: "",
         instanceMatrix: null,
         instanceMap: null,
-        errors: []
+        errors: [],
     },
     reducers: {
         ResetToDefault: (state) => {
@@ -21,14 +21,16 @@ export const dataSlice = createSlice({
         },
         fetchYaml: (state) => {state.yamlString = getYaml()},
         ExtractInstanceMap: (state) => {
-            const linkedBase = "/#/definitions/language";
-            const {newInstanceMatrix, newInstanceMap} = extractInstanceMap(state.yamlString, linkedBase, state.errors)
+            const linkedBase = "#/$defs/language";
+            const {newInstanceMatrix, newInstanceMap, newdM} = extractInstanceMap(state.yamlString, linkedBase, state.errors)
             state.instanceMatrix = newInstanceMatrix;
             state.instanceMap = newInstanceMap;
+            state.dm = newdM;
         },
-        Validate: (state) => {state.errors = validateYaml(state.yamlString)},
+        Validate: (state) => {state.errors = validateYamlString(state.yamlString)},
+        setValue: (state, action) => {state.yamlString = action.payload},
     }
 })
 
-export const {ResetToDefault, fetchYaml, ExtractInstanceMap, Validate} = dataSlice.actions
+export const {ResetToDefault, fetchYaml, ExtractInstanceMap, Validate, setValue} = dataSlice.actions
 export default dataSlice.reducer
