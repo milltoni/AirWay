@@ -1,6 +1,6 @@
 export const getYaml = () => {
   const link =
-    "https://raw.githubusercontent.com/chisler/languageWiki/refs/heads/master/languages.yml";
+    "https://raw.githubusercontent.com/milltoni/Programming-Languages-Yaml/refs/heads/main/languages.yml";
   let request = new XMLHttpRequest();
   request.open("GET", link, false); // `false` makes the request synchronous
   request.setRequestHeader("accept", "application/vnd.github.VERSION.raw");
