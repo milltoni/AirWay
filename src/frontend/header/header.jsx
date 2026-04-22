@@ -5,7 +5,7 @@ import { isEditorMode } from "../../constants";
 import { DisplayMode, EditorMode } from "../../store/slices/modeSlice";
 import { ShowOrHideAddInfo } from "../../store/slices/add_infoSlice";
 import { ShowOrHidePRform } from "../../store/slices/pullrequestSlice";
-import { ResetToDefault, fetchYaml } from "../../store/slices/dataSlice";
+import { ResetToDefault, fetchYaml, ExtractInstanceMap, Validate } from "../../store/slices/dataSlice";
 import { ShowOrHideAboutProject } from "../../store/slices/about_projectSlice";
 
 import logo from "./logo.svg";
@@ -39,6 +39,8 @@ const Header = () => {
   const resetAndFetch = () => {
     dispatch(ResetToDefault());
     dispatch(fetchYaml());
+    dispatch(Validate());
+    dispatch(ExtractInstanceMap());
   };
 
   const displayLinks = {
