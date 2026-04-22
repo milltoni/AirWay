@@ -1,14 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { DisplayMode, EditorMode } from "../../store/slices/modeSlice";
 import { isEditorMode } from "../../constants";
+import { DisplayMode, EditorMode } from "../../store/slices/modeSlice";
 import { ShowOrHideAddInfo } from "../../store/slices/add_infoSlice";
 import { ShowOrHidePRform } from "../../store/slices/pullrequestSlice";
 import { ResetToDefault, fetchYaml } from "../../store/slices/dataSlice";
+import { ShowOrHideAboutProject } from "../../store/slices/about_projectSlice";
 
 import logo from "./logo.svg";
 import "./header.css";
+
 
 const Links = props => {
   const { links, action } = props;
@@ -30,6 +32,7 @@ const Header = () => {
   const mode = useSelector((state) => state.mode.mode);
   const add_info = useSelector((state) => state.add_info.isShown);
   const prf = useSelector((state) => state.PullRequestForm.isShown);
+  const ap = useSelector((state) => state.about_project.isShown);
   //const data = useSelector((state) => state.data.yamlString);
   const dispatch = useDispatch();
 
@@ -41,7 +44,7 @@ const Header = () => {
   const displayLinks = {
     links: [
       <a href="https://github.com/milltoni/airway.git">GitHub</a>,
-      <a href="https://milltoni.github.io/airway/README.md">About Project</a>
+      <a href="#" onClick={() => dispatch(ShowOrHideAboutProject(ap ? false : true))}>About Project</a>
     ],
     action: (
       <a href="#" onClick={() => dispatch(EditorMode())}>

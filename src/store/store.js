@@ -5,6 +5,7 @@ import add_infoReducer from './slices/add_infoSlice'
 import dataReducer from './slices/dataSlice'
 import pullrequestReducer from './slices/pullrequestSlice'
 import graphReducer from './slices/graphSlice'
+import about_projectReducer from './slices/about_projectSlice'
 
 export default configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export default configureStore({
     add_info: add_infoReducer,
     data: dataReducer,
     PullRequestForm: pullrequestReducer,
-    graph: graphReducer
+    graph: graphReducer,
+    about_project: about_projectReducer
   },
 })

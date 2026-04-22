@@ -1,0 +1,92 @@
+.mainn {
+    text-align: center;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background: #f1f5f9;
+    padding: 2rem;
+    border-radius: 12px;
+    min-width: 80%;
+    max-width: 85%;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  }
+  
+  .modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+.about-text {
+    max-height: 70vh;
+    overflow-y: auto;
+    padding-right: 8px; 
+    text-align: left;   
+}
+
+.about-text h1 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.about-text h1 a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.about-text h1 a:hover {
+    text-decoration: underline;
+}
+
+.about-text h2 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 0.25rem;
+}
+
+.about-text p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.about-text ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.about-text li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.about-text li strong {
+    color: #111827;
+}
+
+.about-text em {
+    font-style: italic;
+    color: #4b5563;
+}
