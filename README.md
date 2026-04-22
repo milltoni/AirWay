@@ -1,6 +1,6 @@
 # Airway
 
-[Airwa](https://milltoni.github.io/airway/#) is an interactive tool for detailed analysis of the evolution and interconnections of programming languages. Unlike many other projects that only show high-level relationships, Airway focuses on data accuracy and deep analysis at the level of specific features.
+[Airway](https://milltoni.github.io/airway/#) is an interactive tool for detailed analysis of the evolution and interconnections of programming languages. Unlike many other projects that only show high-level relationships, Airway focuses on data accuracy and deep analysis at the level of specific features.
 
 ## 🔬 Detailed Inheritance Analysis
 
